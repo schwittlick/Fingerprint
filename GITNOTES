@@ -1,2 +1,8 @@
 in order to skip the staging area and commit every file that has been changed since the last commit use the command:
 commit -a (-m "message")
+
+if you want to remove a file from the directory and remove it from being tracked by git use the command
+git rm filename
+
+if you want to just remove it from being tracked, but still present on the harddrive use
+git rm --cached filename
