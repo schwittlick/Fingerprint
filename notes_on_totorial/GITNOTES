@@ -22,3 +22,8 @@ git fetch pb
 um von einem remote repository alle änderungen zu laden und in den aktuellen branch einzugliedern(merge) wird das folgende kommando benutzt:
 git pull
 
+hiermit kann ein neuer tag hinzugefügt werden:
+git tag -a 2.6 -m 'tag note'
+
+um informationen zu einem tag anzusehen benutze:
+git show v2.6
