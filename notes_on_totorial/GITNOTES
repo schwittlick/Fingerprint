@@ -41,3 +41,9 @@ git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.last 'log -1 HEAD'
+
+Um einen neuen Branch anzulegen benutze:
+git branch branchname
+
+Um von einem Branch zum anderen zu wechseln benutze:
+git checkout branchname
