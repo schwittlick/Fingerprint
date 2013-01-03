@@ -41,6 +41,7 @@ git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.last 'log -1 HEAD'
+git config --global alias.br 'branch -v'
 
 Um einen neuen Branch anzulegen benutze:
 git branch branchname
@@ -59,3 +60,7 @@ git merge branchtomerge
 
 Um einen branch, der gemerged wurde wieder zu löschen, da master und der branch an die selbe Stelle zeigt benutzte folgendes Kommando:
 git branch -d branchname
+
+Um alle Branches anzuzeigen benutze:
+git branch oder git branch -v (zeigt die letzte commit-Nachricht)
+-> Ich habe ein neues Alias hinzugefügt, um per git br alle branchcommits anzeigen zu lassen.
