@@ -29,3 +29,7 @@ um informationen zu einem tag anzusehen benutze:
 git show v2.6
 
 um tags zu signed muss irgendetwas mit gpg unter windows verändert werden. Vermutlich werde ich das auch einfach nie brauchen, deswegen lasse ich das hier weg.
+
+Die Autoverfollständigung in der mSysGit shell verfollständigt sogar Optionen eines Kommandos, wie:
+git log --s<tab>
+schlägt alle Optionen vor, die mit s beginnen.
