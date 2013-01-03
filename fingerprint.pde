@@ -1,38 +1,45 @@
 import toxi.geom.*;
 import toxi.geom.mesh.*;
 import java.util.Calendar;
-import controlP5.*;
 import peasy.*;
-import processing.opengl.*;
 
-PImage finger;
-PeasyCam cam;
-int steps, threshold;
+private PeasyCam cam;
 
-PShape shape;
-WETriangleMesh mesh;
+private int steps, threshold;
+private PImage finger;
+private PShape shape;
+private WETriangleMesh mesh;
 
 /**
- * As the time of writing, this sketch is NOT WORKING with Processing 2.0b7- use 2.0b6 instead.
-*/
+ * As the time of writing (03.01.2013), this sketch is NOT WORKING with Processing 2.0b7- use 2.0b6 instead.
+ *
+ * @author: Marcel Schwittlick
+ * @email: marzzzel@gmail.com
+ *
+ * Fingerprint
+ * I have always been impressed by the fact that every fingerprint of every person is slightly different.
+ * And since I'm a big fan of patterns in general I liked the abstract way of what a fingerprint is
+ * actually like. I wanted to have a little closer look and found a way to digitalize my fingerprint and
+ * put it in the physical world, so you can touch and feel it more detailed. Since the technology is there
+ * and an Shapeways order is just 3 clicks and 3 weeks away, I did it.
+ */
 public void setup() {
-  
   size(800, 800, P3D);
-  
+
+  cam = new PeasyCam(this, 1000);
+
   finger = loadImage("fp2.png");
   finger.resize(700, 0);
   finger.filter(INVERT);
   mesh = new WETriangleMesh();
-  
-  cam = new PeasyCam(this, 1000);
 
-  steps = 6;
+  steps = 3;
   threshold = 20;
 
   setupShape();
 }
 
-void setupShape() {
+private void setupShape() {
   shape = createShape(TRIANGLES);
   shape.noStroke();
   shape.fill(255);
@@ -56,94 +63,35 @@ void setupShape() {
       mesh.addFace(p1, p2, p3);
       mesh.addFace(p4, p5, p6);
     }
-    //println(i+"/"+(finger.height-2)+" steps done");
+    println(i+"/"+(finger.height-2)+" steps done");
   }
-  int w = finger.width%steps;
-  int h = finger.height%steps;
-  int padding = -10;
-  //left
-   shape.vertex(0, 0, 255/threshold+1);
-   shape.vertex(0, 0, 0);
-   shape.vertex(0, finger.height-h, 0);
-   mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding));
-   
-   shape.vertex(0, finger.height-h, 0);
-   shape.vertex(0, finger.height-h, 255/threshold+1);
-   shape.vertex(0, 0, 255/threshold+1);
-   mesh.addFace(new Vec3D(0, finger.height-h, padding), new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
-   
-   //top
-   shape.vertex(0, 0, 255/threshold+1);
-   shape.vertex(0, 0, 0);
-   shape.vertex(finger.width-w, 0, 0);
-   mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding));
-   
-   shape.vertex(finger.width-w, 0, 0);
-   shape.vertex(finger.width-w, 0, 255/threshold+1);
-   shape.vertex(0, 0, 255/threshold+1);
-   mesh.addFace(new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, 0, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
-   
-   //right
-   shape.vertex(finger.width-w, 0, 255/threshold+1);
-   shape.vertex(finger.width-w, 0, 0);
-   shape.vertex(finger.width-w, finger.height-h, 0);
-   mesh.addFace(new Vec3D(finger.width-w, 0, 255/threshold+1), new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-   
-   shape.vertex(finger.width-w, finger.height-h, 0);
-   shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
-   shape.vertex(finger.width-w, 0, 255/threshold+1);
-   mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(finger.width-w, 0, 255/threshold+1));
-   
-   //bottom
-   shape.vertex(0, finger.height-h, 255/threshold+1);
-   shape.vertex(0, finger.height-h, 0);
-   shape.vertex(finger.width-w, finger.height-h, 0);
-   mesh.addFace(new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-   
-   shape.vertex(finger.width-w, finger.height-h, 0);
-   shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
-   shape.vertex(0, finger.height-h, 255/threshold+1);
-   mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, 255/threshold+1));
-   
-   //ground
-   shape.vertex(0, 0, padding);
-   shape.vertex(0, finger.height-h, padding);
-   shape.vertex(finger.width-w, finger.height-h, padding);
-   mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-   
-   
-   shape.vertex(0, 0, -10);
-   shape.vertex(finger.width-w, 0, -10);
-   shape.vertex(finger.width-w, finger.height-h, -10);
-   mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-   shape.end();
-   
-   //new LaplacianSmooth().filter(mesh, 1);
-   
-   
-   mesh.faceOutwards();
-   mesh.computeFaceNormals();
-   mesh.computeVertexNormals();
-   //mesh.scale(3);
+  shape.end();
 }
 
-void draw() {
-  
+public void draw() {
   background(0);
   lights();
-  //fill(255);
   shape(shape);
 }
 
-void keyPressed() {
+public void keyPressed() {
   if (key == 's') {
     saveFrame("screen_fingerprint_"+timestamp()+".png");
-    mesh.saveAsSTL("fingerprint-"+timestamp()+".stl");
-    exit();
+  } 
+  if (key == 'm') {
+    saveAndProcessMesh();
   }
 }
 
-String timestamp() {
+private void saveAndProcessMesh() {
+  new LaplacianSmooth().filter(mesh, 1);
+  mesh.faceOutwards();
+  mesh.computeFaceNormals();
+  mesh.computeVertexNormals();
+  mesh.saveAsSTL("fingerprint-"+timestamp()+".stl");
+}
+
+private String timestamp() {
   Calendar now = Calendar.getInstance();
   return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", now);
 }
