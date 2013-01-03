@@ -47,3 +47,5 @@ git branch branchname
 
 Um von einem Branch zum anderen zu wechseln benutze:
 git checkout branchname
+
+Wenn man auf einem branch ist und etwas commitet, dann ist es nur in dem branch commited. Wenn man dann wieder zu einem anderen Branch wechselt sind bestehen nur alle commits, die auf diesem Branch gemacht wurden.
