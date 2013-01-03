@@ -1,0 +1,2 @@
+in order to skip the staging area and commit every file that has been changed since the last commit use the command:
+commit -a (-m "message")
