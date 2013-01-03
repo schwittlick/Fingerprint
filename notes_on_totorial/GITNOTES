@@ -6,3 +6,6 @@ git rm filename
 
 if you want to just remove it from being tracked, but still present on the harddrive use
 git rm --cached filename
+
+this displays a pretty log of the commits
+git log --pretty=shirt --graph
