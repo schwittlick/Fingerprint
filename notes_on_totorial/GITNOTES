@@ -12,3 +12,9 @@ git log --pretty=shirt --graph
 
 mit dem folgenden programm hat man eine noch bessere grafische darstellung der commit historie
 gitk
+
+um ein neues remote repository für ein lokales repository hinzuzufügen benutzt man:
+git remote add ob git://github.com/paulboone/ticgit.git
+
+und dann per folgendem commando alle changes herunterladen:
+git fetch pb
