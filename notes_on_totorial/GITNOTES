@@ -49,3 +49,10 @@ Um von einem Branch zum anderen zu wechseln benutze:
 git checkout branchname
 
 Wenn man auf einem branch ist und etwas commitet, dann ist es nur in dem branch commited. Wenn man dann wieder zu einem anderen Branch wechselt sind bestehen nur alle commits, die auf diesem Branch gemacht wurden.
+
+Um einen neuen Branch anzulegen und gleichzeitig auf ihn zu wechseln benutzte folgendes Kommando:
+git checkout -b branchname
+
+Um einen veränderten Branch mit dem master branch zu vereinigen (mergen) benutze folgendes Kommando:
+git checkout master
+git merge branchtomerge
