@@ -9,3 +9,6 @@ git rm --cached filename
 
 this displays a pretty log of the commits
 git log --pretty=shirt --graph
+
+mit dem folgenden programm hat man eine noch bessere grafische darstellung der commit historie
+gitk
