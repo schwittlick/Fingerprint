@@ -33,3 +33,10 @@ um tags zu signed muss irgendetwas mit gpg unter windows verändert werden. Vermu
 Die Autoverfollständigung in der mSysGit shell verfollständigt sogar Optionen eines Kommandos, wie:
 git log --s<tab>
 schlägt alle Optionen vor, die mit s beginnen.
+
+Die folgenden Aliases wurden global hinzugefügt:
+git config --global alias.lo 'git log --pretty=oneline'
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
