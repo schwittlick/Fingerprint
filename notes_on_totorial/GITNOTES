@@ -18,3 +18,7 @@ git remote add ob git://github.com/paulboone/ticgit.git
 
 und dann per folgendem commando alle changes herunterladen:
 git fetch pb
+
+um von einem remote repository alle änderungen zu laden und in den aktuellen branch einzugliedern(merge) wird das folgende kommando benutzt:
+git pull
+
