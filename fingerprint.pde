@@ -1,38 +1,35 @@
 import toxi.geom.*;
 import toxi.geom.mesh.*;
-
+import java.util.Calendar;
 import controlP5.*;
 import peasy.*;
 import processing.opengl.*;
 
 PImage finger;
 PeasyCam cam;
-ControlP5 cp5;
-PMatrix3D currCameraMatrix;
-PGraphics3D g3; 
-Slider stepsSlider, thresholdSlider;
 int steps, threshold;
 
 PShape shape;
 WETriangleMesh mesh;
 
+/**
+ * As the time of writing, this sketch is NOT WORKING with Processing 2.0b7- use 2.0b6 instead.
+*/
 public void setup() {
+  
+  size(800, 800, P3D);
+  
   finger = loadImage("fp2.png");
   finger.resize(700, 0);
   finger.filter(INVERT);
   mesh = new WETriangleMesh();
-  size(800, 800, P3D);
-  g3 = (PGraphics3D)g;
+  
   cam = new PeasyCam(this, 1000);
-  cp5 = new ControlP5(this);
 
-  steps = 3;
+  steps = 6;
   threshold = 20;
 
   setupShape();
-
-  cp5.addSlider("steps", 1, 30, steps, 20, 30, 10, 100);
-  cp5.addSlider("threshold", 0, 255, threshold, 50, 30, 10, 100);
 }
 
 void setupShape() {
@@ -64,7 +61,6 @@ void setupShape() {
   int w = finger.width%steps;
   int h = finger.height%steps;
   int padding = -10;
-  /*
   //left
    shape.vertex(0, 0, 255/threshold+1);
    shape.vertex(0, 0, 0);
@@ -129,28 +125,25 @@ void setupShape() {
    mesh.computeFaceNormals();
    mesh.computeVertexNormals();
    //mesh.scale(3);
-   */
 }
 
-public void draw() {
-  lights();
+void draw() {
+  
   background(0);
+  lights();
   //fill(255);
   shape(shape);
-  cam.beginHUD();
-  cp5.draw();
-  cam.endHUD();
 }
 
 void keyPressed() {
   if (key == 's') {
-    saveFrame("screen_fingerprint_"+timeStamp()+".png");
-    mesh.saveAsSTL("fingerprint-"+timeStamp()+".stl");
+    saveFrame("screen_fingerprint_"+timestamp()+".png");
+    mesh.saveAsSTL("fingerprint-"+timestamp()+".stl");
     exit();
   }
 }
 
-private String timestamp() {
+String timestamp() {
   Calendar now = Calendar.getInstance();
   return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", now);
 }
