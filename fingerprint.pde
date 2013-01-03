@@ -64,74 +64,72 @@ void setupShape() {
   int w = finger.width%steps;
   int h = finger.height%steps;
   int padding = -10;
- /*
+  /*
   //left
-  shape.vertex(0, 0, 255/threshold+1);
-  shape.vertex(0, 0, 0);
-  shape.vertex(0, finger.height-h, 0);
-  mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding));
-
-  shape.vertex(0, finger.height-h, 0);
-  shape.vertex(0, finger.height-h, 255/threshold+1);
-  shape.vertex(0, 0, 255/threshold+1);
-  mesh.addFace(new Vec3D(0, finger.height-h, padding), new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
-
-  //top
-  shape.vertex(0, 0, 255/threshold+1);
-  shape.vertex(0, 0, 0);
-  shape.vertex(finger.width-w, 0, 0);
-  mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding));
-
-  shape.vertex(finger.width-w, 0, 0);
-  shape.vertex(finger.width-w, 0, 255/threshold+1);
-  shape.vertex(0, 0, 255/threshold+1);
-  mesh.addFace(new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, 0, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
-
-  //right
-  shape.vertex(finger.width-w, 0, 255/threshold+1);
-  shape.vertex(finger.width-w, 0, 0);
-  shape.vertex(finger.width-w, finger.height-h, 0);
+   shape.vertex(0, 0, 255/threshold+1);
+   shape.vertex(0, 0, 0);
+   shape.vertex(0, finger.height-h, 0);
+   mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding));
+   
+   shape.vertex(0, finger.height-h, 0);
+   shape.vertex(0, finger.height-h, 255/threshold+1);
+   shape.vertex(0, 0, 255/threshold+1);
+   mesh.addFace(new Vec3D(0, finger.height-h, padding), new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
+   
+   //top
+   shape.vertex(0, 0, 255/threshold+1);
+   shape.vertex(0, 0, 0);
+   shape.vertex(finger.width-w, 0, 0);
+   mesh.addFace(new Vec3D(0, 0, 255/threshold+1), new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding));
+   
+   shape.vertex(finger.width-w, 0, 0);
+   shape.vertex(finger.width-w, 0, 255/threshold+1);
+   shape.vertex(0, 0, 255/threshold+1);
+   mesh.addFace(new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, 0, 255/threshold+1), new Vec3D(0, 0, 255/threshold+1));
+   
+   //right
+   shape.vertex(finger.width-w, 0, 255/threshold+1);
+   shape.vertex(finger.width-w, 0, 0);
+   shape.vertex(finger.width-w, finger.height-h, 0);
    mesh.addFace(new Vec3D(finger.width-w, 0, 255/threshold+1), new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-
-  shape.vertex(finger.width-w, finger.height-h, 0);
-  shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
-  shape.vertex(finger.width-w, 0, 255/threshold+1);
-  mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(finger.width-w, 0, 255/threshold+1));
-
-  //bottom
-  shape.vertex(0, finger.height-h, 255/threshold+1);
-  shape.vertex(0, finger.height-h, 0);
-  shape.vertex(finger.width-w, finger.height-h, 0);
-  mesh.addFace(new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-
-  shape.vertex(finger.width-w, finger.height-h, 0);
-  shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
-  shape.vertex(0, finger.height-h, 255/threshold+1);
-  mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, 255/threshold+1));
-
-  //ground
-  shape.vertex(0, 0, padding);
-  shape.vertex(0, finger.height-h, padding);
-  shape.vertex(finger.width-w, finger.height-h, padding);
-  mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-
-
-  shape.vertex(0, 0, -10);
-  shape.vertex(finger.width-w, 0, -10);
-  shape.vertex(finger.width-w, finger.height-h, -10);
-  mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, finger.height-h, padding));
-  shape.end();
-  
-  //new LaplacianSmooth().filter(mesh, 1);
-  
-  
-  mesh.faceOutwards();
-  mesh.computeFaceNormals();
-  mesh.computeVertexNormals();
-  //mesh.scale(3);
-*/
-  mesh.saveAsSTL(sketchPath("fingerprint-"+(System.currentTimeMillis()/1000)+".stl"));
-  exit();
+   
+   shape.vertex(finger.width-w, finger.height-h, 0);
+   shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
+   shape.vertex(finger.width-w, 0, 255/threshold+1);
+   mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(finger.width-w, 0, 255/threshold+1));
+   
+   //bottom
+   shape.vertex(0, finger.height-h, 255/threshold+1);
+   shape.vertex(0, finger.height-h, 0);
+   shape.vertex(finger.width-w, finger.height-h, 0);
+   mesh.addFace(new Vec3D(0, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
+   
+   shape.vertex(finger.width-w, finger.height-h, 0);
+   shape.vertex(finger.width-w, finger.height-h, 255/threshold+1);
+   shape.vertex(0, finger.height-h, 255/threshold+1);
+   mesh.addFace(new Vec3D(finger.width-w, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, 255/threshold+1), new Vec3D(0, finger.height-h, 255/threshold+1));
+   
+   //ground
+   shape.vertex(0, 0, padding);
+   shape.vertex(0, finger.height-h, padding);
+   shape.vertex(finger.width-w, finger.height-h, padding);
+   mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(0, finger.height-h, padding), new Vec3D(finger.width-w, finger.height-h, padding));
+   
+   
+   shape.vertex(0, 0, -10);
+   shape.vertex(finger.width-w, 0, -10);
+   shape.vertex(finger.width-w, finger.height-h, -10);
+   mesh.addFace(new Vec3D(0, 0, padding), new Vec3D(finger.width-w, 0, padding), new Vec3D(finger.width-w, finger.height-h, padding));
+   shape.end();
+   
+   //new LaplacianSmooth().filter(mesh, 1);
+   
+   
+   mesh.faceOutwards();
+   mesh.computeFaceNormals();
+   mesh.computeVertexNormals();
+   //mesh.scale(3);
+   */
 }
 
 public void draw() {
@@ -146,7 +144,14 @@ public void draw() {
 
 void keyPressed() {
   if (key == 's') {
-    saveFrame("screen_fingerprint_"+(int)random(100)+".png");
+    saveFrame("screen_fingerprint_"+timeStamp()+".png");
+    mesh.saveAsSTL("fingerprint-"+timeStamp()+".stl");
+    exit();
   }
+}
+
+private String timestamp() {
+  Calendar now = Calendar.getInstance();
+  return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", now);
 }
 
